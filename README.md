@@ -1,4 +1,4 @@
-# Lab3
+# Lab 3
 ## The idea
 Create an app consisting of a single activity, that only works in a single mode: landscape. The activity will have a black rectangle drawn on a white background with a small margin on the outside of the square. In other words, there will be a small gap between the inner rectangle drawn on the screen and the phone outside edge. 
 
