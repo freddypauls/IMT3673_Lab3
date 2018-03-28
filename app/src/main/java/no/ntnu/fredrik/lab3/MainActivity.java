@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Set orientation to landscape
+        // Set orientation to landscape (also set in manifest)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_main);
 
@@ -85,38 +85,42 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void run() {
 
-                //Draws on the x axis
-                //makes sure that it does not draw outside screen
+                // Draws on the x axis
+                // Makes sure that it does not draw outside screen and always spawns ball in the middle
                 if (circleX < screenSizeWidth && circleX > 100){
                     circleX = circleX + sensorY * 6.0f;
                 }
                 else if (circleX < screenSizeWidth){
-                    circleX = circleX + 100 -(sensorX * 6.0f);
+                    circleX = screenWidth / 2 - circleRadius;
+                    circleY = screenHeight / 2 - circleRadius;
                     assert vibratorFeedback != null;
                     vibratorFeedback.vibrate(50);
                     tg.startTone(ToneGenerator.TONE_PROP_BEEP);
 
                 }
                 else if (circleX > 0){
-                    circleX = circleX - 100 -(sensorX * 6.0f);
+                    circleX = screenWidth / 2 - circleRadius;
+                    circleY = screenHeight / 2 - circleRadius;
                     assert vibratorFeedback != null;
                     vibratorFeedback.vibrate(50);
                     tg.startTone(ToneGenerator.TONE_PROP_BEEP);
                 }
 
                 // Draws on the Y axis
-                //makes sure that it does not draw outside screen
+                // Makes sure that it does not draw outside screen and always spawns ball in the middle
                 if (circleY < screenSizeHeight && circleY > 100){
                     circleY = circleY + sensorX * 6.0f;
                 }
                 else if (circleY < screenSizeHeight){
-                    circleY = circleY + 100 -(sensorY * 6.0f);
+                    circleX = screenWidth / 2 - circleRadius;
+                    circleY = screenHeight / 2 - circleRadius;
                     assert vibratorFeedback != null;
                     vibratorFeedback.vibrate(50);
                     tg.startTone(ToneGenerator.TONE_PROP_BEEP);
                 }
                 else if (circleY > 0){
-                    circleY = circleY - 100 -(sensorY * 6.0f);
+                    circleX = screenWidth / 2 - circleRadius;
+                    circleY = screenHeight / 2 - circleRadius;
                     assert vibratorFeedback != null;
                     vibratorFeedback.vibrate(50);
                     tg.startTone(ToneGenerator.TONE_PROP_BEEP);
@@ -167,7 +171,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             ball = new Paint();
             background = new Paint();
         }
-        //Sets circle and rectangle
+        // Makes circle and rectangle
         public void onDraw(Canvas screen){
             //Circle
             ball.setStyle(Paint.Style.FILL);
